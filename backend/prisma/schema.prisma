@@ -36,5 +36,6 @@ model Book {
   availableCopies Int      @default(1)
   genreId         Int
   genre           Genre    @relation(fields: [genreId], references: [id])
+  content         String?  @db.Text
   createdAt       DateTime @default(now())
 }

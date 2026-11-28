@@ -1,14 +1,33 @@
-\## Schema Decisions
+# Library Management System
 
+This repository is a JavaScript monorepo with separate backend and frontend applications:
 
+```text
+backend/   NestJS API and Prisma database schema
+frontend/  React + Vite web application
+```
 
-\*\*Why Book references Genre instead of embedding it:\*\*
+## Getting started
 
-Each Book stores a `genreId` that points to a row in the Genre table, instead of copying the genre name into every book. PostgreSQL is a relational database, so relationships are kept in separate tables linked by foreign keys. This means a genre's name is stored in one place. If a genre name changes, we update one row, not every book in that genre. It also avoids copies that could drift apart over time.
+Install dependencies for both applications from the repository root:
 
+```sh
+npm install
+```
 
+Start either application:
 
-\*\*Role enum:\*\*
+```sh
+npm run dev:backend
+npm run dev:frontend
+```
 
-The `Role` enum (PATRON, LIBRARIAN) limits a user's role to those two values, so a typo such as "LIBRAIN" can't be saved.
+The backend has its own setup and database instructions in [backend/README.md](backend/README.md). The frontend runs on Vite's local development server.
 
+## Workspace commands
+
+```sh
+npm run build          # build both apps
+npm run build:backend  # build the NestJS API
+npm run build:frontend # build the web app
+```
